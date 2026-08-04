@@ -1,0 +1,27 @@
+{
+  "name": "jakiboy/laracroft",
+  "version": "0.1.0",
+  "type": "library",
+  "description": "Lara Croft would make a better tomb raider with camels",
+  "keywords": [
+    "php",
+    "laravel",
+  ],
+  "homepage": "https://jakiboy.github.io/Laracroft/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jihad Sinnaour",
+      "email": "me@jihadsinnaour.com",
+      "role": "Founder"
+    }
+  ],
+  "require": {
+    "php": ">=8.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Laracroft\\": "src/"
+    }
+  }
+}
