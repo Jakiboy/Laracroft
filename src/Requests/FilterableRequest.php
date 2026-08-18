@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace Laracroft\Requests;
 
-use Laracroft\Requests\Authentication;
 use Laracroft\Objects\FilterObject;
 
 abstract class FilterableRequest extends Authentication
