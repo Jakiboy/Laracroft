@@ -1,8 +1,8 @@
 <?php
 
-namespace Laracroft\Helpers;
+namespace Laracroft\Traits;
 
-final class Config
+trait HasConfig
 {
     /**
      * Get API version.
@@ -34,6 +34,14 @@ final class Config
     public static function isDev() : bool
     {
         return app()->environment('development', 'dev');
+    }
+
+    /**
+     * Get production status.
+     */
+    public static function isProd() : bool
+    {
+        return app()->environment('production', 'prod');
     }
 
     /**
