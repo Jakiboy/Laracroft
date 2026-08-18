@@ -3,10 +3,10 @@
 namespace Laracroft\Middleware;
 
 use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
+use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Session\TokenMismatchException;
 
-class SecureMiddleware extends Middleware
+class SecureMiddleware extends PreventRequestForgery
 {
     /**
      * Excluded from CSRF verification.
