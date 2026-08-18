@@ -7,6 +7,17 @@ use DateTimeInterface;
 class Sanitizer
 {
     /**
+     * Sanitize name.
+     *
+     * @param string $name
+     * @return string
+     */
+    public static function name(string $name) : string
+    {
+        return trim(preg_replace('/\s+/', ' ', $name));
+    }
+
+    /**
      * Sanitize content with proper HTML purification.
      *
      * @param string $content
@@ -105,6 +116,21 @@ class Sanitizer
 
         // Return empty string if email is not valid
         return '';
+    }
+
+    /**
+     * Sanitize date.
+     *
+     * @param DateTimeInterface $date
+     * @return string
+     */
+    public static function date(mixed $date, string $format = 'd/m/Y H:i:s') : string
+    {
+        if ( $date instanceof DateTimeInterface ) {
+            $date = $date->format($format);
+        }
+
+        return (string)$date;
     }
 
     /**
