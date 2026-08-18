@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Laracroft\Helpers;
 
 /**
  * Single source of truth for the application's permission schema.
@@ -10,7 +10,6 @@ namespace App\Helpers;
  *   1. Add it here under MODULES
  *   2. Add it to the relevant ROLE_DEFAULTS entries
  *   3. Add the route middleware in api.php
- *   4. Call /admin/role/synchronize (or re-seed) to push it to the database
  */
 final class Permission
 {
