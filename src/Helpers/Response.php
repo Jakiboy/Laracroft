@@ -25,7 +25,7 @@ class Response extends JsonResponse
     public const string UNEXPECTED         = 'global.app.unexpected';
 
     /**
-     * Return standardized success response.
+     * @inheritdoc
      */
     public static function success(string $message = self::SUCCESS, $data = [], string $status = 'success', int $code = 200) : self
     {
@@ -33,7 +33,7 @@ class Response extends JsonResponse
     }
 
     /**
-     * Return standardized error response.
+     * @inheritdoc
      */
     public static function error(string $message = self::ERROR, $data = [], string $status = 'error', int $code = 400) : self
     {
@@ -41,13 +41,7 @@ class Response extends JsonResponse
     }
 
     /**
-     * Return standardized response.
-     *
-     * @param string $message
-     * @param mixed $data
-     * @param string $status
-     * @param int $code
-     * @return self
+     * @inheritdoc
      */
     public static function set(string $message = '', $data = [], ?string $status = null, int $code = 200) : self
     {

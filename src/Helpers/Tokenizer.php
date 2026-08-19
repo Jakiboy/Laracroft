@@ -5,12 +5,7 @@ namespace Laracroft\Helpers;
 class Tokenizer
 {
     /**
-     * Encrypt secret data (Username, Password).
-     *
-     * @param string $data
-     * @param bool $prefix Whether to add the [APP] prefix (default: true)
-     * @param string $cipher Encryption cipher algorithm (default: 'aes-256-cbc')
-     * @return string
+     * @inheritdoc
      */
     public static function encrypt(string $data, bool $prefix = true, string $cipher = 'aes-256-cbc') : string
     {
@@ -45,12 +40,7 @@ class Tokenizer
     }
 
     /**
-     * Decrypt secret data (Username, Password).
-     *
-     * @param string $data
-     * @param bool $prefix Whether to expect and remove the [APP] prefix (default: true)
-     * @param string $cipher Encryption cipher algorithm (default: 'aes-256-cbc')
-     * @return string
+     * @inheritdoc
      */
     public static function decrypt(string $data, bool $prefix = true, string $cipher = 'aes-256-cbc') : string
     {
@@ -91,11 +81,7 @@ class Tokenizer
     }
 
     /**
-     * Check encrypted secret data (Username, Password).
-     * Prefix: [APP]
-     *
-     * @param string $data
-     * @return bool
+     * @inheritdoc
      */
     public static function isEncrypted(string $data) : bool
     {

@@ -9,6 +9,9 @@ class FilterObject
     public const array ALLOWED_FILTER_FIELDS = [];
     public const bool ALLOW_FILTER_WILDCARD = true;
 
+    /**
+     * @inheritdoc
+     */
     public function __construct(
         public readonly int $items = 5,
         public readonly ?string $search = null,
@@ -18,6 +21,9 @@ class FilterObject
     ) {
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function fromArray(
         array $query,
         array $allowed = [],

@@ -4,14 +4,12 @@ namespace Laracroft\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Collection;
 
-/**
- * Custom Eloquent builder converts camelCase column names to snake.
- */
 class CamelCaseBuilder extends Builder
 {
     /**
-     * Convert a plain-string column name.
+     * @inheritdoc
      */
     protected function normalizeColumn(mixed $column) : mixed
     {
@@ -33,8 +31,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Convert every key in the given array from camelCase to snake_case.
-     * Already-snake_case keys are left unchanged (Str::snake is idempotent).
+     * @inheritdoc
      */
     protected function normalizeArrayKeys(array $columns) : array
     {
@@ -48,7 +45,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override where query.
+     * @inheritdoc
      */
     public function where($column, $operator = null, $value = null, $boolean = 'and') : static
     {
@@ -62,7 +59,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override orWhere query.
+     * @inheritdoc
      */
     public function orWhere($column, $operator = null, $value = null) : static
     {
@@ -76,7 +73,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override orderBy query.
+     * @inheritdoc
      */
     public function orderBy($column, $direction = 'asc') : static
     {
@@ -88,7 +85,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override orderByDesc query.
+     * @inheritdoc
      */
     public function orderByDesc($column) : static
     {
@@ -96,7 +93,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override whereAny query.
+     * @inheritdoc
      */
     public function whereAny(array $columns, $operator = null, $value = null, $boolean = 'and') : static
     {
@@ -106,7 +103,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override whereIn query.
+     * @inheritdoc
      */
     public function whereIn($column, $values, $boolean = 'and', $not = false) : static
     {
@@ -114,7 +111,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override whereNotIn query.
+     * @inheritdoc
      */
     public function whereNotIn($column, $values, $boolean = 'and') : static
     {
@@ -122,7 +119,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override whereNull query.
+     * @inheritdoc
      */
     public function whereNull($columns, $boolean = 'and', $not = false) : static
     {
@@ -134,7 +131,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override whereNotNull query.
+     * @inheritdoc
      */
     public function whereNotNull($columns, $boolean = 'and') : static
     {
@@ -146,7 +143,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override select query.
+     * @inheritdoc
      */
     public function select($columns = ['*']) : static
     {
@@ -157,7 +154,7 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override addSelect query.
+     * @inheritdoc
      */
     public function addSelect($column) : static
     {
@@ -168,15 +165,15 @@ class CamelCaseBuilder extends Builder
     }
 
     /**
-     * Override pluck query.
+     * @inheritdoc
      */
-    public function pluck($column, $key = null) : \Illuminate\Support\Collection
+    public function pluck($column, $key = null) : Collection
     {
         return parent::pluck($this->normalizeColumn($column), $key !== null ? $this->normalizeColumn($key) : $key);
     }
 
     /**
-     * Override update query.
+     * @inheritdoc
      */
     public function update(array $values) : int
     {

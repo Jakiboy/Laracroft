@@ -2,12 +2,12 @@
 
 namespace Laracroft\Objects;
 
-use ReflectionClass;
+use \ReflectionClass;
 
 abstract class DataObject
 {
     /**
-     * Create an instance of the class from an associative array, mapping array keys to property names.
+     * @inheritdoc
      */
     public static function fromArray(array $data) : static
     {
@@ -25,7 +25,7 @@ abstract class DataObject
     }
 
     /**
-     * Serialize to array, excluding null values.
+     * @inheritdoc
      */
     public function toArray() : array
     {

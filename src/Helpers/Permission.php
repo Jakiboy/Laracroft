@@ -2,20 +2,10 @@
 
 namespace Laracroft\Helpers;
 
-/**
- * Single source of truth for the application's permission schema.
- *
- * Only define permissions that are actively gated in routes — no phantom entries.
- * To add a new permission:
- *   1. Add it here under MODULES
- *   2. Add it to the relevant ROLE_DEFAULTS entries
- *   3. Add the route middleware in api.php
- */
 final class Permission
 {
     /**
-     * All available modules and their permitted actions.
-     * These map directly to 'module.action' permission names in Spatie.
+     * @inheritdoc
      */
     public const MODULES = [
         'dashboard'   => ['view'],
@@ -30,9 +20,7 @@ final class Permission
     ];
 
     /**
-     * Default permission assignments per role, applied on first seed.
-     * Role assignments made via the admin UI are stored in the database
-     * and take precedence — these are only used during initial seeding.
+     * @inheritdoc
      */
     public const ROLE_DEFAULTS = [
         'admin'   => [
@@ -93,7 +81,7 @@ final class Permission
     ];
 
     /**
-     * All permission names as a flat list: ['module.action', ...]
+     * @inheritdoc
      */
     public static function all() : array
     {
@@ -107,9 +95,7 @@ final class Permission
     }
 
     /**
-     * Full schema with every permission set to false.
-     * Used by the UI to render the permissions form (all checkboxes unchecked by default).
-     * Format: ['module' => ['action' => false]]
+     * @inheritdoc
      */
     public static function schema() : array
     {

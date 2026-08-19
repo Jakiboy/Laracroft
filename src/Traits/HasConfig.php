@@ -5,7 +5,7 @@ namespace Laracroft\Traits;
 trait HasConfig
 {
     /**
-     * Get API version.
+     * @inheritdoc
      */
     public static function getApiVersion() : string
     {
@@ -13,7 +13,7 @@ trait HasConfig
     }
 
     /**
-     * Get App version.
+     * @inheritdoc
      */
     public static function getAppVersion() : string
     {
@@ -21,7 +21,7 @@ trait HasConfig
     }
 
     /**
-     * Get debug status.
+     * @inheritdoc
      */
     public static function isDebug() : bool
     {
@@ -29,7 +29,7 @@ trait HasConfig
     }
 
     /**
-     * Get dev status.
+     * @inheritdoc
      */
     public static function isDev() : bool
     {
@@ -37,7 +37,7 @@ trait HasConfig
     }
 
     /**
-     * Get production status.
+     * @inheritdoc
      */
     public static function isProd() : bool
     {
@@ -45,7 +45,7 @@ trait HasConfig
     }
 
     /**
-     * Get local status.
+     * @inheritdoc
      */
     public static function isLocal() : bool
     {

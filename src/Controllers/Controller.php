@@ -11,7 +11,7 @@ abstract class Controller
     use AuthorizesRequests;
 
     /**
-     * Return standardized response.
+     * @inheritdoc
      */
     protected function setResponse(string $message = '', $data = [], ?string $status = null, int $code = 200) : Response
     {
@@ -19,7 +19,7 @@ abstract class Controller
     }
 
     /**
-     * Return standardized success response.
+     * @inheritdoc
      */
     protected function success(string $message = 'Success', $data = [], string $status = 'success', int $code = 200) : Response
     {
@@ -27,7 +27,7 @@ abstract class Controller
     }
 
     /**
-     * Return standardized error response.
+     * @inheritdoc
      */
     protected function error(string $message = 'Error', $data = [], string $status = 'error', int $code = 400) : Response
     {
@@ -35,7 +35,7 @@ abstract class Controller
     }
 
     /**
-     * Return standardized exception response.
+     * @inheritdoc
      */
     protected function exception(Throwable $exception) : Response
     {

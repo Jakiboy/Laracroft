@@ -5,14 +5,14 @@ namespace Laracroft\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
-use Closure;
+use \Closure;
 
 class ActivityMiddleware
 {
     /**
-     * Routes to exclude from logging.
+     * @inheritdoc
      */
-    private array $excludedRoutes = [
+    private array $excludRoute = [
         'api/health',
         'api/ping',
         'api/*/activity*',
@@ -24,19 +24,15 @@ class ActivityMiddleware
     ];
 
     /**
-     * HTTP methods to exclude from logging.
+     * @inheritdoc
      */
-    private array $excludedMethods = [
+    private array $excludMethod = [
         'HEAD',
         'OPTIONS',
     ];
 
     /**
-     * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @return Response
+     * @inheritdoc
      */
     public function handle(Request $request, Closure $next) : Response
     {
@@ -50,11 +46,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Determine if we should log this request.
-     *
-     * @param Request $request
-     * @param Response $response
-     * @return bool
+     * @inheritdoc
      */
     private function shouldLog(Request $request, Response $response) : bool
     {
@@ -62,12 +54,12 @@ class ActivityMiddleware
             return false;
         }
 
-        if ( in_array($request->getMethod(), $this->excludedMethods) ) {
+        if ( in_array($request->getMethod(), $this->excludMethod) ) {
             return false;
         }
 
         $path = $request->path();
-        foreach ($this->excludedRoutes as $excludedRoute) {
+        foreach ($this->excludRoute as $excludedRoute) {
             if ( fnmatch($excludedRoute, $path) ) {
                 return false;
             }
@@ -77,11 +69,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Log activity based on request method and route.
-     *
-     * @param Request $request
-     * @param Response $response
-     * @return void
+     * @inheritdoc
      */
     private function logActivity(Request $request, Response $response) : void
     {
@@ -135,12 +123,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Persist an activity using Spatie activitylog helper.
-     *
-     * @param Request $request
-     * @param string $action
-     * @param string|null $description
-     * @return void
+     * @inheritdoc
      */
     private function writeSpatieActivity(Request $request, string $action, ?string $description = null) : void
     {
@@ -163,10 +146,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Get activity type from HTTP method.
-     *
-     * @param string $method
-     * @return string|null
+     * @inheritdoc
      */
     private function getActivityFromMethod(string $method) : ?string
     {
@@ -180,14 +160,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Get custom message based on request context.
-     *
-     * @param Request $request
-     * @param string $method
-     * @param string|null $routeName
-     * @param mixed $response
-     * @param string|null $activity
-     * @return string|null
+     * @inheritdoc
      */
     private function getCustomMessage(Request $request, string $method, ?string $routeName, $response, ?string $activity = null) : ?string
     {
@@ -209,11 +182,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Extract resource name from route.
-     *
-     * @param Request $request
-     * @param string|null $routeName
-     * @return string|null
+     * @inheritdoc
      */
     private function getResourceFromRoute(Request $request, ?string $routeName) : ?string
     {
@@ -270,10 +239,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Check if route contains specific patterns for special handling.
-     *
-     * @param Request $request
-     * @return string|null
+     * @inheritdoc
      */
     private function getSpecialAction(Request $request) : ?string
     {
@@ -299,11 +265,7 @@ class ActivityMiddleware
     }
 
     /**
-     * Get special message for special actions.
-     *
-     * @param Request $request
-     * @param string $action
-     * @return string|null
+     * @inheritdoc
      */
     private function getSpecialMessage(Request $request, string $action) : ?string
     {

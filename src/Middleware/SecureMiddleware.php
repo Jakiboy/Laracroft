@@ -2,23 +2,21 @@
 
 namespace Laracroft\Middleware;
 
-use Closure;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Session\TokenMismatchException;
+use \Closure;
 
 class SecureMiddleware extends PreventRequestForgery
 {
     /**
-     * Excluded from CSRF verification.
-     *
-     * @var array<int, string>
+     * @inheritdoc
      */
     protected $except = [
         'api/*/client/*',
     ];
 
     /**
-     * Override default CSRF exception message from framework middleware.
+     * @inheritdoc
      */
     public function handle($request, Closure $next)
     {

@@ -4,16 +4,12 @@ namespace Laracroft\Middleware;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Closure;
+use \Closure;
 
 class ResponseMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
-     * @param Request $request
-     * @param Closure $next
-     * @return Response
+     * @inheritdoc
      */
     public function handle(Request $request, Closure $next) : Response
     {

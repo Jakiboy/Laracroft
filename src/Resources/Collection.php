@@ -7,6 +7,9 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Collection extends ResourceCollection
 {
+    /**
+     * @inheritdoc
+     */
     public function toArray(Request $request) : array
     {
         // Check if the resource has pagination methods

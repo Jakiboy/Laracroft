@@ -1,0 +1,37 @@
+{
+  "folders": [
+    {
+      "name": "Laracroft",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.defaultFormatter": null,
+    "php.format.rules.indentBraces": false,
+    "php.format.rules.spaceAfterCast": false,
+    "php.format.rules.spaceAroundConcatenation": true,
+    "php.format.rules.spaceBeforeColonInReturnType": true,
+    "php.format.rules.alignMatchArmBodies": true,
+    "php.format.rules.alignConstants": true,
+    "php.format.rules.arrayInitializersAlignKeyValuePairs": true,
+    "php.format.rules.spaceWithinIfParens": true,
+    "php.format.rules.chainedMethodCallsSemicolonOnNewLine": true,
+    "php.format.rules.groupUseNewLineBeforeFirstDeclaration": true,
+    "php.format.rules.keepControlStatementsOnOneLine": true,
+    "php.format.rules.addCommaAfterLastArrayElement": false,
+    "php.format.rules.arrayInitializersNewLineBeforeFirstElement": true,
+    "php.format.rules.alignProperties": false,
+    "[php]": {
+      "editor.defaultFormatter": "DEVSENSE.phptools-vscode",
+      "editor.formatOnSave": true
+    },
+    "[json]": {
+      "editor.defaultFormatter": "vscode.json-language-features",
+      "editor.formatOnSave": true
+    },
+    "php.version": "8.3",
+  },
+  "extensions": {
+    "recommendations": []
+  }
+}

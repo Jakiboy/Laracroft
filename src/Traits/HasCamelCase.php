@@ -115,7 +115,7 @@ trait HasCamelCase
     }
 
     /**
-     * Convert every key in the given array from camelCase to snake_case.
+     * @inheritdoc
      */
     protected function normaliseKeys(array $attributes) : array
     {
@@ -129,7 +129,7 @@ trait HasCamelCase
     }
 
     /**
-     * Normalise a single key or array of keys to snake_case.
+     * @inheritdoc
      */
     protected function normaliseArgument(array|string|null $keys) : array|string|null
     {
@@ -141,7 +141,7 @@ trait HasCamelCase
     }
 
     /**
-     * Convert every key in the given array from snake_case to camelCase.
+     * @inheritdoc
      */
     protected function keysToCamelCase(array $attributes) : array
     {

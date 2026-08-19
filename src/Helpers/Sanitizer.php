@@ -2,15 +2,12 @@
 
 namespace Laracroft\Helpers;
 
-use DateTimeInterface;
+use \DateTimeInterface;
 
 class Sanitizer
 {
     /**
-     * Sanitize name.
-     *
-     * @param string $name
-     * @return string
+     * @inheritdoc
      */
     public static function name(string $name) : string
     {
@@ -18,11 +15,7 @@ class Sanitizer
     }
 
     /**
-     * Sanitize content with proper HTML purification.
-     *
-     * @param string $content
-     * @param array|string $allowed
-     * @return string
+     * @inheritdoc
      */
     public static function content(string $content, array|string|null $allowed = null, int $limit = 6000) : string
     {
@@ -91,10 +84,7 @@ class Sanitizer
     }
 
     /**
-     * Sanitize email.
-     *
-     * @param string $email
-     * @return string
+     * @inheritdoc
      */
     public static function email(string $email) : string
     {
@@ -119,10 +109,7 @@ class Sanitizer
     }
 
     /**
-     * Sanitize date.
-     *
-     * @param DateTimeInterface $date
-     * @return string
+     * @inheritdoc
      */
     public static function date(mixed $date, string $format = 'd/m/Y H:i:s') : string
     {
@@ -134,10 +121,7 @@ class Sanitizer
     }
 
     /**
-     * Sanitize malformed UTF-8 characters.
-     *
-     * @param string $text
-     * @return string
+     * @inheritdoc
      */
     public static function utf8(string $text) : string
     {
