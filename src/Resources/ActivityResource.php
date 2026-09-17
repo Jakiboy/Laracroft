@@ -7,6 +7,9 @@ use Laracroft\Helpers\Sanitizer;
 
 class ActivityResource extends JsonResource
 {
+    /**
+     * @inheritdoc
+     */
     public function toArray($request) : array
     {
         $data = [

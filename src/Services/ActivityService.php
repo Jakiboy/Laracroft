@@ -11,6 +11,9 @@ use Laracroft\Resources\ActivityResource;
 
 class ActivityService
 {
+    /**
+     * @inheritdoc
+     */
     public static function getAll(Request $request) : ActivityCollection
     {
         $items = (int)$request->query('items', 5);
@@ -38,6 +41,9 @@ class ActivityService
         return new ActivityCollection($query->paginate($items));
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function get(Model $activity) : ActivityResource
     {
         $activity->load('causer');
@@ -45,6 +51,9 @@ class ActivityService
         return new ActivityResource($activity);
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function search(string $search, int $items = 5, string $sortField = 'activity_log.created_at', string $sortDirection = 'desc', array $filters = []) : ActivityCollection
     {
         try {
@@ -72,6 +81,9 @@ class ActivityService
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public static function delete(Model $activity) : bool
     {
         try {
@@ -87,6 +99,9 @@ class ActivityService
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     private static function query()
     {
         $activityModel = config('activitylog.activity_model');
@@ -101,11 +116,17 @@ class ActivityService
             ->select('activity_log.*');
     }
 
+    /**
+     * @inheritdoc
+     */
     private static function userModel() : string
     {
         return config('auth.providers.users.model');
     }
 
+    /**
+     * @inheritdoc
+     */
     private static function filters(Request $request) : array
     {
         $filters = [];
@@ -118,6 +139,9 @@ class ActivityService
         return $filters;
     }
 
+    /**
+     * @inheritdoc
+     */
     private static function applyFilters($query, array $filters) : void
     {
         $userTable = self::userModel()::query()->getModel()->getTable();
@@ -147,6 +171,9 @@ class ActivityService
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     private static function applyTimestampFilter($query, string $value) : void
     {
         if ( strpos($value, '-') === false ) {
