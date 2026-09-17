@@ -17,7 +17,6 @@ class CamelCaseBuilder extends Builder
             return $column;
         }
 
-        // Keep aliased/raw expressions intact (e.g. "table.col as pivot_col").
         if ( preg_match('/\s+as\s+/i', $column) || str_contains($column, ' ') ) {
             return $column;
         }
