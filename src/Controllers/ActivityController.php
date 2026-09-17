@@ -10,16 +10,25 @@ use Laracroft\Services\ActivityService;
 
 class ActivityController extends Controller
 {
+    /**
+     * @inheritdoc
+     */
     public function index(FilterableRequest $request) : Response
     {
         return $this->success(data: ActivityService::getAll($request));
     }
 
+    /**
+     * @inheritdoc
+     */
     public function show(Activity $activity) : Response
     {
         return $this->success(data: ActivityService::get($activity));
     }
-
+    
+    /**
+     * @inheritdoc
+     */
     public function search(Request $request) : Response
     {
         $search = $request->query('q');
@@ -32,6 +41,9 @@ class ActivityController extends Controller
         return $this->success(data: ActivityService::search($search, $items));
     }
 
+    /**
+     * @inheritdoc
+     */
     public function destroy(Activity $activity) : Response
     {
         if ( ActivityService::delete($activity) ) {

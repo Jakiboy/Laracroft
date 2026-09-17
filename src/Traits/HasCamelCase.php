@@ -5,9 +5,6 @@ namespace Laracroft\Traits;
 use Laracroft\Helpers\CamelCaseBuilder;
 use Illuminate\Support\Str;
 
-/**
- * camelCase property names on Eloquent.
- */
 trait HasCamelCase
 {
     /**

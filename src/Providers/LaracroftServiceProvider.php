@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class LaracroftServiceProvider extends ServiceProvider
 {
+    /**
+     * @inheritdoc
+     */
     public function register() : void
     {
         $defaults = require __DIR__ . '/../config/activitylog.php';
