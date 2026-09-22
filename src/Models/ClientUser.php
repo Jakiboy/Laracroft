@@ -13,7 +13,7 @@ use Spatie\OneTimePasswords\Models\Concerns\HasOneTimePasswords;
 class ClientUser extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasCamelCase, Notifiable, HasOneTimePasswords;
-    
+
     /**
      * @inheritdoc
      */
@@ -26,14 +26,14 @@ class ClientUser extends Authenticatable
         'password',
         'is_active',
     ];
-    
+
     /**
      * @inheritdoc
      */
     protected $attributes = [
         'is_active' => true,
     ];
-    
+
     /**
      * @inheritdoc
      */
@@ -41,7 +41,7 @@ class ClientUser extends Authenticatable
         'password',
         'remember_token',
     ];
-    
+
     /**
      * @inheritdoc
      */
@@ -53,7 +53,7 @@ class ClientUser extends Authenticatable
             }
         });
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -65,7 +65,7 @@ class ClientUser extends Authenticatable
             'is_active'         => 'boolean',
         ];
     }
-    
+
     /**
      * @inheritdoc
      */

@@ -42,10 +42,8 @@ class Sanitizer
             ];
         }
 
-        // Null bytes and control characters
         $content = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', $content);
 
-        // JS/CSS Injection patterns
         $content = preg_replace('/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/mi', '', $content);
         $content = preg_replace('/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/mi', '', $content);
         $content = preg_replace('/javascript:/i', '', $content);
@@ -53,7 +51,6 @@ class Sanitizer
         $content = preg_replace('/vbscript:/i', '', $content);
         $content = preg_replace('/data:/i', '', $content);
 
-        // SQL injection patterns
         $sql = [
             '/\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE|UNION|SCRIPT|DECLARE|CAST|CONVERT|CHAR|ASCII|SUBSTRING)\b/i',
             '/--/',
@@ -71,11 +68,9 @@ class Sanitizer
             $content = preg_replace($pattern, '', $content);
         }
 
-        // Safe tags
         $allowedTags = is_array($allowed) ? implode('', $allowed) : $allowed;
         $content = strip_tags($content, $allowedTags);
 
-        // Limit to $limit plain-text characters
         if ( $limit > 0 && mb_strlen(strip_tags($content)) > $limit ) {
             $content = mb_substr($content, 0, $limit);
         }
@@ -88,23 +83,18 @@ class Sanitizer
      */
     public static function email(string $email) : string
     {
-        // Trim whitespace
         $email = trim($email);
 
-        // Return empty string if email is empty
         if ( empty($email) ) {
             return '';
         }
 
-        // Sanitize and validate email
         $sanitized = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        // Validate the sanitized email
         if ( filter_var($sanitized, FILTER_VALIDATE_EMAIL) ) {
             return strtolower($sanitized);
         }
 
-        // Return empty string if email is not valid
         return '';
     }
 

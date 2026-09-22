@@ -2,12 +2,12 @@
 
 namespace Laracroft\Services;
 
+use Laracroft\Resources\ActivityCollection;
+use Laracroft\Resources\ActivityResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Log;
-use Laracroft\Resources\ActivityCollection;
-use Laracroft\Resources\ActivityResource;
 
 class ActivityService
 {

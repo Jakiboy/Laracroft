@@ -17,11 +17,11 @@ class RoleUpdateRequest extends Authentication
             'permissions' => 'sometimes|array',
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
-    public function withValidator( $validator) : void
+    public function withValidator($validator) : void
     {
         $validator->after(function ($v) {
             $permissions = $this->input('permissions');

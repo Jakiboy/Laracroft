@@ -140,9 +140,9 @@ class RoleService
 		self::purgeCache();
 	}
 
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @inheritdoc
+	 */
 	public static function synchronize() : bool
 	{
 		try {
@@ -160,9 +160,9 @@ class RoleService
 		}
 	}
 
-    /**
-     * @inheritdoc
-     */
+	/**
+	 * @inheritdoc
+	 */
 	public static function purgeCache() : void
 	{
 		app(PermissionRegistrar::class)->forgetCachedPermissions();

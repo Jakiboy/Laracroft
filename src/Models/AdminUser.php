@@ -2,24 +2,24 @@
 
 namespace Laracroft\Models;
 
+use Laracroft\Traits\HasCamelCase;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\OneTimePasswords\Models\Concerns\HasOneTimePasswords;
 use Spatie\Permission\Traits\HasRoles;
-use Laracroft\Traits\HasCamelCase;
 
 class AdminUser extends Authenticatable
 {
     use HasApiTokens, HasFactory, HasCamelCase, Notifiable, HasOneTimePasswords, HasRoles;
-    
+
     /**
      * @inheritdoc
      */
     protected string $guard_name = 'admin';
-    
+
     /**
      * @inheritdoc
      */
