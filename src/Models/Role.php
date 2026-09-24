@@ -10,6 +10,10 @@ class Role extends SpatieRole
 {
     use HasFactory;
 
+    public const SUPER = 'super';
+    public const ADMIN = 'admin';
+    public const STAFF = 'staff';
+
     public const GUARD = 'admin';
 
     protected $fillable = ['name', 'guard_name', 'title', 'description'];

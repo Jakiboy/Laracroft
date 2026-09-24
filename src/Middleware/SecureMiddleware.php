@@ -12,7 +12,12 @@ class SecureMiddleware extends PreventRequestForgery
      * @inheritdoc
      */
     protected $except = [
-        'api/*/client/*',
+        'api/*/client/auth/login',
+        'api/*/client/auth/password/forgot',
+        'api/*/client/auth/password/reset',
+        'api/*/client/auth/password/create',
+        'api/*/client/auth/otp/verify',
+        'api/*/client/auth/otp/resend',
     ];
 
     /**

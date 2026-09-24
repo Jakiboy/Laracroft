@@ -78,9 +78,15 @@ class AdminUser extends Authenticatable
      */
     public function getPhoneAttribute() : ?string
     {
-        return $this->getPhonePrefixAttribute() && $this->getPhoneRawAttribute()
-            ? "{$this->getPhonePrefixAttribute()}{$this->getPhoneRawAttribute()}"
-            : null;
+        $phone = $this->getPhoneRawAttribute();
+
+        if ( !$phone ) {
+            return null;
+        }
+
+        return $this->getPhonePrefixAttribute()
+            ? "{$this->getPhonePrefixAttribute()}{$phone}"
+            : $phone;
     }
 
     /**

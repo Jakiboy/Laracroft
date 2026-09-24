@@ -209,6 +209,7 @@ class ActivityMiddleware
                 ->all();
         }
 
+        // Fallback for edge cases where route metadata is unavailable.
         if ( empty($segments) ) {
             $segments = $request->segments();
         }
@@ -217,6 +218,7 @@ class ActivityMiddleware
             return null;
         }
 
+        // Normalize API prefix segments: api/{version}/admin
         if ( isset($segments[0]) && $segments[0] === 'api' ) {
             array_shift($segments);
         }

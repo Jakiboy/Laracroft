@@ -2,11 +2,11 @@
 
 namespace Laracroft\Controllers;
 
+use Illuminate\Http\Request;
 use Laracroft\Helpers\Response;
 use Laracroft\Models\Activity;
 use Laracroft\Requests\FilterableRequest;
 use Laracroft\Services\ActivityService;
-use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
