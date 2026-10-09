@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 
 final class Permission
 {
+    public const array MODULES = [];
+
     public static function modules() : array
     {
         return self::load('modules.json');
