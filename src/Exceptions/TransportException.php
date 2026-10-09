@@ -16,7 +16,7 @@ class TransportException extends RuntimeException
         private readonly int $statusCode = 503,
         ?Throwable $previous = null,
     ) {
-        parent::__construct($message, previous: $previous);
+        parent::__construct($message, $this->statusCode, previous: $previous);
     }
 
     /**
