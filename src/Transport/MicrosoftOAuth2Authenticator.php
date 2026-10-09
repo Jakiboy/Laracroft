@@ -2,13 +2,19 @@
 
 namespace Laracroft\Transport;
 
+use Laracroft\Exceptions\TransportException;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\Mailer\Transport\Smtp\Auth\AuthenticatorInterface;
 use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
-use RuntimeException;
 
 class MicrosoftOAuth2Authenticator implements AuthenticatorInterface
 {
+    protected const string TOKEN_URL    = 'https://login.microsoftonline.com/%s/oauth2/v2.0/token';
+    protected const string GRANT_TYPE   = 'client_credentials';
+    protected const string AUTH_KEYWORD = 'XOAUTH2';
+
+    protected int $timeout = 15;
+
     /**
      * @inheritdoc
      */
@@ -25,7 +31,7 @@ class MicrosoftOAuth2Authenticator implements AuthenticatorInterface
      */
     public function getAuthKeyword() : string
     {
-        return 'XOAUTH2';
+        return self::AUTH_KEYWORD;
     }
 
     /**
@@ -35,24 +41,40 @@ class MicrosoftOAuth2Authenticator implements AuthenticatorInterface
     {
         $response = Http::asForm()
             ->acceptJson()
-            ->timeout(15)
-            ->post("https://login.microsoftonline.com/{$this->tenantId}/oauth2/v2.0/token", [
-                'grant_type'    => 'client_credentials',
+            ->timeout($this->timeout)
+            ->post(sprintf(self::TOKEN_URL, $this->tenantId), [
+                'grant_type'    => self::GRANT_TYPE,
                 'client_id'     => $this->clientId,
                 'client_secret' => $this->clientSecret,
                 'scope'         => $this->scope,
             ]);
-        $response->throw();
 
+        $response->throw();
         $accessToken = $response->json('access_token');
+
         if ( !is_string($accessToken) || $accessToken === '' ) {
-            throw new RuntimeException('Microsoft OAuth2 token response did not include an access token.');
+            throw new TransportException('Microsoft OAuth2 token response did not include an access token.');
         }
 
-        $credentials = base64_encode(
-            "user={$client->getUsername()}\x01auth=Bearer {$accessToken}\x01\x01",
-        );
+        $credentials = $this->getCredentials($accessToken, $client->getUsername());
+        $client->executeCommand($this->getCommand($credentials), [235]);
+    }
 
-        $client->executeCommand("AUTH XOAUTH2 {$credentials}\r\n", [235]);
+    /**
+     * @inheritdoc
+     */
+    protected function getCredentials(string $accessToken, string $username) : string
+    {
+        return base64_encode(
+            "user={$username}\x01auth=Bearer {$accessToken}\x01\x01",
+        );
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getCommand(string $credentials) : string
+    {
+        return "AUTH " . self::AUTH_KEYWORD . " {$credentials}\r\n";
     }
 }
