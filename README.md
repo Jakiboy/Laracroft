@@ -1,6 +1,6 @@
 # Laracroft
 
-Lara Croft would make a better tomb raider with camels.
+Advanced Tweaks for Laravel Applications.
 
 ## ⚡ Installing:
 
